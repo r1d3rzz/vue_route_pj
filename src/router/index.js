@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import JobView from "../views/job/JobView.vue";
 import JobDetail from "../views/job/JobDetail.vue";
+import PageNotFound from "../views/PageNotFound.vue";
 
 const routes = [
   {
@@ -19,15 +20,26 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
   {
-    path: "/job",
+    path: "/jobs",
     name: "Job",
     component: JobView,
   },
+  //dynamic route
   {
-    path: "/job/detail/:id",
+    path: "/jobs/detail/:id",
     name: "JobDetail",
     component: JobDetail,
     props: true,
+  },
+  //redirect
+  {
+    path: "/all-jobs",
+    redirect: "/jobs",
+  },
+  //404 error Page catchAll()
+  {
+    path: "/:catchAll(.*)",
+    component: PageNotFound,
   },
 ];
 
